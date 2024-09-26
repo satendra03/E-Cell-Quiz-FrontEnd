@@ -29,7 +29,6 @@ export default function QuizCompleted() {
     toast.success("Quiz Completed Successfully!");
   
     return () => {
-      console.log("Satendra");
       toast.dismiss(); 
       clearTimeout(timeoutId);
     };

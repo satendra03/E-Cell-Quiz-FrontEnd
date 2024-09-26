@@ -12,7 +12,7 @@ export default function Home() {
   const router = useRouter();
 
   if (isSignedIn) {
-    console.log("Loggedin user", user);
+    // console.log("Loggedin user", user);
     
     // console.log(" User Name : ", user.fullName);
     const userEmail = user.primaryEmailAddress.emailAddress;

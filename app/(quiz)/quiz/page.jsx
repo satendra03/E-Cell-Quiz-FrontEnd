@@ -26,7 +26,7 @@ const Quiz = () => {
 
   const router = useRouter();
   const url = process.env.NEXT_PUBLIC_BACKEND_URL;
-  // const userEmail = user.primaryEmailAddress.emailAddress;
+  const userEmail = user.primaryEmailAddress.emailAddress;
 
   useEffect(() => {
     fetch(`${url}/get-questions`, {
@@ -55,11 +55,11 @@ const Quiz = () => {
   // changing the count on clicking next button
   const handleNextQuestion = () => {
     console.log("next Question");
-    
-    setCount((prev)=>prev+1);
+
+    setCount((prev) => prev + 1);
     if (count > quizdatalength) {
       const requestBody = {
-        email: "developerakshatsingh@gmail.com", // change karna hai
+        email: userEmail, // change karna hai
         marks: points,
       };
 
@@ -74,7 +74,7 @@ const Quiz = () => {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log("On saving data",data);
+          console.log("On saving data", data);
           router.push("/quiz-completed");
         });
     }
@@ -103,7 +103,6 @@ const Quiz = () => {
       });
     }
   }, [count]);
-
 
   // setting the value of selected option to a variable to compare it with the correct answer coming from the backend(database)
   const handleOptionClick1 = (option) => {
@@ -141,18 +140,15 @@ const Quiz = () => {
           justifyContent: "center",
         }}
       >
-        <Stack    
-          className="rounded-lg flex-col flex gap-5 items-center justify-between lg:shadow-black lg:shadow-lg w-[80vw]"
-        >
+        <Stack className="rounded-lg flex-col flex gap-5 items-center justify-between lg:shadow-black lg:shadow-lg w-[80vw]">
           <Stack
             width="100%"
             height="10%"
-              className="text-background bg-blue-900 flex items-center justify-center rounded-lg"
+            className="text-background bg-blue-900 flex items-center justify-center rounded-lg"
           >
             <h4 className="scroll-m-20 text-lg lg:text-xl font-semibold tracking-tight text-white text-center py-3 px-2">
-            Q{count + 1}. {question}
-    </h4>
-
+              Q{count + 1}. {question}
+            </h4>
           </Stack>
           <Stack
             width="100%"
@@ -162,26 +158,33 @@ const Quiz = () => {
             justifyContent="flex-start"
           ></Stack>
           <div className="options grid grid-cols-1 gap-2 lg:gap-10 w-full lg:grid-cols-2 lg:w-[80%]">
-            
-            {data.map((item,idx)=>{
+            {data?.map((item, idx) => {
               return (
-                <div 
-                data-option={item.op}
-                key={idx} onClick={item.func} className={`box h-14 lg:h-20 w-full bg-white hover:cursor-pointer rounded-lg hover:scale-[1.05] transition-all active:scale-95 hover:shadow-md hover:shadow-black ${clicked == item.op ? "bg-green-500":"bg-white"} flex items-center justify-center`}>
-              {item.op}
-            </div>
-              )
+                <div
+                  data-option={item.op}
+                  key={idx}
+                  onClick={item.func}
+                  className={`box h-14 lg:h-20 w-full bg-white hover:cursor-pointer rounded-lg hover:scale-[1.05] transition-all active:scale-95 hover:shadow-md hover:shadow-black ${
+                    clicked == item.op ? "bg-green-500" : "bg-white"
+                  } flex items-center justify-center`}
+                >
+                  {item.op}
+                </div>
+              );
             })}
           </div>
-          
-            <Button
-              disabled={clicked == true}
-              className={`${clicked!=true && 'bg-blue-900 hover:bg-blue-950 text-white hover:text-white/90'} mb-3`}
-              startIcon={<NavigateNextIcon />}
-              onClick={handleNextQuestion}
-            >
-              Next Question
-            </Button>
+
+          <Button
+            disabled={clicked == true}
+            className={`${
+              clicked != true &&
+              "bg-blue-900 hover:bg-blue-950 text-white hover:text-white/90"
+            } mb-3`}
+            startIcon={<NavigateNextIcon />}
+            onClick={handleNextQuestion}
+          >
+            Next Question
+          </Button>
         </Stack>
       </Box>
     </>
