@@ -1,0 +1,12 @@
+   fetch("http://localhost:7070/get-questions", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: 'include', // Include cookies in the request
+        body: JSON.stringify(requestBody),
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            
+        })
