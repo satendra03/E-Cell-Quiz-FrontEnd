@@ -12,9 +12,11 @@ export default function Home() {
   const router = useRouter();
 
   if (isSignedIn) {
-    console.log(" User Name : ", user.fullName);
+    console.log("Loggedin user", user);
+    
+    // console.log(" User Name : ", user.fullName);
     const userEmail = user.primaryEmailAddress.emailAddress;
-    console.log(" Use Email : ", userEmail);
+    // console.log(" Use Email : ", userEmail);
 
     const requestBody = {
       // email: "hello@gmail.com"
@@ -54,14 +56,15 @@ export default function Home() {
   return (
     <>
       <Stack className="h-[80vh] flex items-center justify-center">
-        <div className="w-full h-full flex gap-3 pt-48 items-start justify-center">
+        <div className="w-full h-full flex gap-3 items-center justify-center">
           <div className="text flex flex-col items-center gap-5">
             <div className="text text-center">
               <h1 className="scroll-m-20 text-5xl font-extrabold tracking-tight lg:text-8xl text-white shadow-lg">
                 E-Quest
               </h1>
-              <p className="text-md lg:text-xl text-white/70">
-                E cell quiz, i am so frusted rn that....
+              <p className="text-md lg:text-xl text-white/70 max-w-[60vw]">
+              E-Quest is an engaging and interactive quiz competition organized by <br/> <b>the E-Cell of Jabalpur Engineering College.</b><br/> Designed to stimulate curiosity, encourage learning, and promote healthy competition, <br/>
+              E-Quest brings together sharp minds from various domains to test their knowledge, problem-solving skills, and quick thinking.
               </p>
             </div>
             <Button className="w-fit " onClick={handleClick}>Start Quiz</Button>

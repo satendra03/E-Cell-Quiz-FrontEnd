@@ -3,7 +3,7 @@ import { Button } from "./ui/button";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { useUser } from "@clerk/nextjs";
+import { useUser, UserButton } from "@clerk/nextjs";
 
 export default function NavigationBar() {
   const router = useRouter();
@@ -13,12 +13,12 @@ export default function NavigationBar() {
     router.push("/sign-in"); // Navigate to the /sign-in page
   };
 
-  const { isSignedIn } = useUser();
+  const { isSignedIn, user } = useUser();
 
   return (
     <>
       <div className="w-screen h-[10vh] flex items-center justify-between px-5 lg:px-10 border-b-2 p-2 border-white/10">
-        <h3 className="scroll-m-20 text-xl lg:text-2xl font-semibold tracking-tight ">
+        <div className="flex gap-2 items-center justify-center">
           <Link href={"/"}>
             <Image
               src={"/ecell.png"}
@@ -27,15 +27,21 @@ export default function NavigationBar() {
               height={50}
             />
           </Link>
-        </h3>
-        <div className="auh">
-          {isSignedIn ? (
+          <Link href={"https://www.ecell.in/mainpage/home"}>
             <Image
               src={"/iitb.png"}
               alt="Description of the image"
               width={50}
               height={50}
             />
+          </Link>
+        </div>
+        <div className="auh">
+          {isSignedIn ? (
+            <div className="flex items-center justify-between gap-3 text-white">
+              <h3>Welcome, {user.fullName}</h3>
+              <UserButton/>
+            </div>
           ) : (
             <Button onClick={handleSignupClick}>Sign In</Button>
           )}

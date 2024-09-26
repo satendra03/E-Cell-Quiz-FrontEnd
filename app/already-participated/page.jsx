@@ -4,7 +4,7 @@ export default function AlreadyParticipated() {
   return (
     <>
       <Stack className="flex w-full h-[80vh] items-center justify-center text-center">
-        <h2 className="scroll-m-20 border-b pb-2 text-xl lg:text-3xl font-semibold tracking-tight first:mt-0 text-white">
+        <h2 className="scroll-m-20 border-b pb-2 text-xl lg:text-3xl tracking-tight first:mt-0 font-bold text-white">
           Already participated, cannot play the quiz twice.
         </h2>
         <p className="text-md lg:text-lg text-white/70">Result will be sent in the email.</p>

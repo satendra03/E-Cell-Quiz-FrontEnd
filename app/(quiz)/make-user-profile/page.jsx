@@ -3,6 +3,7 @@
 import { useUser } from '@clerk/nextjs';
 import { Stack } from '@mui/material';
 import { useRouter } from 'next/navigation';
+import { ImSpinner8 } from 'react-icons/im';
 
 export default function MakeUserProfile() {
     const { user, isSignedIn } = useUser();
@@ -48,10 +49,10 @@ export default function MakeUserProfile() {
 
     return (
         <>
-            <Stack width="100vw" height="90vh" alignItems="center" justifyContent="center">
-                <Stack width="800px" height="250px" alignItems="center" justifyContent="space-evenly" p="0px 20px 0px 20px" sx={{ border: "none", borderRadius: "7px", boxShadow: "4px 4px 12px black" }}>
-                    <p className='text-2xl font-semibold text-orange-700' >Setting up few things</p>
-                    <p className='text-xl font-semibold text-blue-800' >Loading....</p>
+            <Stack width="100vw" height="80vh" alignItems="center" justifyContent="center">
+                <Stack width="800px" height="250px" alignItems="center" justifyContent="space-evenly" p="0px 20px 0px 20px">
+                    <p className='text-2xl font-semibold text-white' >Setting up few things</p>
+                    <ImSpinner8 size={102} className={"animate-spin text-white"} />
                 </Stack>
             </Stack>
             

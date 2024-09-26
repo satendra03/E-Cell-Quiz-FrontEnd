@@ -24,7 +24,7 @@ export default function QuizCompleted() {
   
     const timeoutId = setTimeout(() => {
       handleLogout();
-    }, 5000);
+    }, 4000);
   
     toast.success("Quiz Completed Successfully!");
   
