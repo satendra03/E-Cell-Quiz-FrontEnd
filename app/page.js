@@ -63,8 +63,7 @@ export default function Home() {
                 E-Quest
               </h1>
               <p className="text-md lg:text-xl text-white/70 max-w-[60vw]">
-              E-Quest is an engaging and interactive quiz competition organized by <br/> <b>the E-Cell of Jabalpur Engineering College.</b><br/> Designed to stimulate curiosity, encourage learning, and promote healthy competition, <br/>
-              E-Quest brings together sharp minds from various domains to test their knowledge, problem-solving skills, and quick thinking.
+              E-Quest is an engaging and interactive quiz competition organized by <br/> <b>the E-Cell of Jabalpur Engineering College.</b>
               </p>
             </div>
             <Button className="w-fit " onClick={handleClick}>Start Quiz</Button>

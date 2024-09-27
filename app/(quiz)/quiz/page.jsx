@@ -24,6 +24,8 @@ const Quiz = () => {
   const [clicked, setClicked] = useState(true);
   const { user, isSignedIn } = useUser();
 
+  const [disabled, setDisabled] = useState(false);
+
   const router = useRouter();
   const url = process.env.NEXT_PUBLIC_BACKEND_URL;
   const userEmail = user.primaryEmailAddress.emailAddress;
@@ -55,9 +57,12 @@ const Quiz = () => {
   // changing the count on clicking next button
   const handleNextQuestion = () => {
     console.log("next Question");
+    setClicked('');
 
     setCount((prev) => prev + 1);
     if (count > quizdatalength) {
+      setDisabled(true);
+      const toastId = toast.loading('Saving Data');
       const requestBody = {
         email: userEmail, // change karna hai
         marks: points,
@@ -74,6 +79,7 @@ const Quiz = () => {
       })
         .then((response) => response.json())
         .then((data) => {
+          toast.success('Data Saved Successfully!', {id: toastId});
           console.log("On saving data", data);
           router.push("/quiz-completed");
         });
@@ -122,7 +128,7 @@ const Quiz = () => {
     setSelectedValue("d");
   };
 
-  var data = [
+  const data = [
     { op: option1, func: handleOptionClick1 },
     { op: option2, func: handleOptionClick2 },
     { op: option3, func: handleOptionClick3 },
@@ -175,7 +181,7 @@ const Quiz = () => {
           </div>
 
           <Button
-            disabled={clicked == true}
+            disabled = {disabled}
             className={`${
               clicked != true &&
               "bg-blue-900 hover:bg-blue-950 text-white hover:text-white/90"
