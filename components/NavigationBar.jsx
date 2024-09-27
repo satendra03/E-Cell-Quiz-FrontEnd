@@ -38,7 +38,7 @@ export default function NavigationBar() {
         </div>
         <div className="auh">
           {isSignedIn ? (
-            <div className="flex items-center justify-between gap-3 text-white">
+            <div className="flex font-medium lg:font-bold items-center justify-between gap-3 text-white">
               <h3>Welcome, {user.fullName}</h3>
               <UserButton/>
             </div>

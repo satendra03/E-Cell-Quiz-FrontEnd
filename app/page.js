@@ -6,6 +6,7 @@ import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import toast from "react-hot-toast";
+import { ImSpinner8 } from "react-icons/im";
 
 export default function Home() {
   const { user, isSignedIn } = useUser();
@@ -55,7 +56,24 @@ export default function Home() {
 
   return (
     <>
-      <Stack className="h-[80vh] flex items-center justify-center">
+      {isSignedIn ? (
+         <Stack className="h-[80vh] flex items-center justify-center">
+         <div className="w-full h-full flex gap-3 items-center justify-center">
+           <div className="text flex flex-col items-center gap-5">
+             <div className="text text-center">
+               <h1 className="scroll-m-20 text-5xl font-extrabold tracking-tight lg:text-8xl text-white shadow-lg">
+                 E-Quest
+               </h1>
+               <p className="text-md lg:text-xl text-white/70 max-w-[60vw]">
+               E-Quest is an engaging and interactive quiz competition organized by <br/> <b>the E-Cell of Jabalpur Engineering College.</b>
+               </p>
+             </div>
+             <Button disabled className="w-fit " >Loading Quiz <ImSpinner8 className={`animate-spin`} /></Button>
+           </div>
+         </div>
+       </Stack>
+      ) : (
+        <Stack className="h-[80vh] flex items-center justify-center">
         <div className="w-full h-full flex gap-3 items-center justify-center">
           <div className="text flex flex-col items-center gap-5">
             <div className="text text-center">
@@ -70,6 +88,9 @@ export default function Home() {
           </div>
         </div>
       </Stack>
+      )
+      }
+     
     </>
   );
 }
